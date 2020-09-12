@@ -1,0 +1,8 @@
+{
+    // Add to Visual Studio Code settings.json
+    // Have the CMake Tools extension installed
+    // Source: https://github.com/microsoft/vcpkg#using-vcpkg-with-cmake
+    "cmake.configureSettings": {
+        "CMAKE_TOOLCHAIN_FILE": "[vcpkg root]/scripts/buildsystems/vcpkg.cmake"
+      }
+}
