@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.9...3.18)
+project(sdl2-demo VERSION 0.1.0 DESCRIPTION "SDL2 demo project using CMake" LANGUAGES CXX)
+
+find_package(SDL2 REQUIRED)
+add_executable(sdl2-demo src/main.cpp)
+target_compile_features(sdl2-demo PUBLIC cxx_std_17)
+set_target_properties(sdl2-demo PROPERTIES CXX_EXTENSIONS OFF)
+target_link_libraries(sdl2-demo PRIVATE SDL2::SDL2 SDL2::SDL2main)
+
+if ( CMAKE_CXX_COMPILER_ID MATCHES "Clang|AppleClang|GNU" )
+    target_compile_options( sdl2-demo PRIVATE -Wall -Wextra -Wunreachable-code -Wpedantic)
+endif()
+if ( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
+    target_compile_options( sdl2-demo PRIVATE -Wweak-vtables -Wexit-time-destructors -Wglobal-constructors -Wmissing-noreturn )
+endif()
+if ( CMAKE_CXX_COMPILER_ID MATCHES "MSVC" )
+    target_compile_options( sdl2-demo PRIVATE /W4 /w44265 /w44061 /w44062 )
+endif()
